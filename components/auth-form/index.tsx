@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import type { SubmitHandler, FieldValues } from 'react-hook-form'
 import Input from '../input'
@@ -9,11 +9,20 @@ import AuthSocials from './social-icons'
 import { BsGithub, BsGoogle } from 'react-icons/bs'
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 const AuthForm = () => {
+  const session = useSession()
+  const router = useRouter()
   const [variant, setVariant] = useState<Variant>('LOGIN')
   const [isLoading, setIsLoading] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (session?.status === 'authenticated') {
+      router.push('/users')
+    }
+  }, [session.status, router])
 
   const toggleVariant = useCallback(() => {
     if (variant === 'LOGIN') {
@@ -40,7 +49,7 @@ const AuthForm = () => {
     if (variant === 'REGISTER') {
       axios
         .post('/api/register', data)
-        .then(() => toast.success('Account Created!'))
+        .then(() => signIn('credentials', data))
         .catch(() => toast.error('Something went wrong!'))
         .finally(() => {
           setIsLoading(false)
@@ -57,6 +66,7 @@ const AuthForm = () => {
           }
           if (callback?.ok && !callback?.error) {
             toast.success('Logged In!')
+            router.push('/users')
           }
         })
         .finally(() => setIsLoading(false))
@@ -80,7 +90,7 @@ const AuthForm = () => {
 
   return (
     <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
-      <div className='px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10 backdrop-blur-[9px] border border-gray-200'>
+      <div className='px-4 py-8 bg-gray-50 shadow sm:rounded-lg sm:px-10 backdrop-blur-[9px] border border-gray-200'>
         <form action='' className='space-y-6' onSubmit={handleSubmit(onSubmit)}>
           {variant === 'REGISTER' && <Input id='name' label='Name' register={register} errors={errors} disabled={isLoading} />}
 
