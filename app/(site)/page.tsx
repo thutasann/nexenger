@@ -1,7 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
 import AuthForm from '@/components/auth-form'
-import Navbar from '@/components/auth-form/navbar'
 
 const Page = () => {
   return (
