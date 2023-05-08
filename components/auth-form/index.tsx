@@ -65,6 +65,17 @@ const AuthForm = () => {
 
   const socialAction = (action: 'github' | 'google') => {
     setIsLoading(true)
+    signIn(action, { redirect: false })
+      .then(callback => {
+        if (callback?.error) {
+          toast.error('Something went wrong!')
+        }
+
+        if (callback?.ok && !callback?.error) {
+          toast.success(`${action}  LoggedIn successful!`)
+        }
+      })
+      .finally(() => setIsLoading(false))
   }
 
   return (
