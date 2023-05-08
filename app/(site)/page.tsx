@@ -1,6 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
 import AuthForm from '@/components/auth-form'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Getting Started | Nexenger',
+}
 
 const Page = () => {
   return (
