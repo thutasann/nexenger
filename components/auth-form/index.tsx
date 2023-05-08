@@ -8,6 +8,8 @@ import Button from '../button'
 import AuthSocials from './social-icons'
 import { BsGithub, BsGoogle } from 'react-icons/bs'
 import axios from 'axios'
+import { toast } from 'react-hot-toast'
+import { signIn } from 'next-auth/react'
 
 const AuthForm = () => {
   const [variant, setVariant] = useState<Variant>('LOGIN')
@@ -36,10 +38,28 @@ const AuthForm = () => {
   const onSubmit: SubmitHandler<FieldValues> = data => {
     setIsLoading(true)
     if (variant === 'REGISTER') {
-      axios.post('/api/register', data)
-      setIsLoading(false)
+      axios
+        .post('/api/register', data)
+        .then(() => toast.success('Account Created!'))
+        .catch(() => toast.error('Something went wrong!'))
+        .finally(() => {
+          setIsLoading(false)
+        })
     }
     if (variant === 'LOGIN') {
+      signIn('credentials', {
+        ...data,
+        redirect: false,
+      })
+        .then(callback => {
+          if (callback?.error) {
+            toast.error('Invalid credentials!')
+          }
+          if (callback?.ok && !callback?.error) {
+            toast.success('Logged In!')
+          }
+        })
+        .finally(() => setIsLoading(false))
     }
   }
 
