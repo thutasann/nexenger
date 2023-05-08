@@ -7,6 +7,7 @@ import Input from '../input'
 import Button from '../button'
 import AuthSocials from './social-icons'
 import { BsGithub, BsGoogle } from 'react-icons/bs'
+import axios from 'axios'
 
 const AuthForm = () => {
   const [variant, setVariant] = useState<Variant>('LOGIN')
@@ -33,26 +34,24 @@ const AuthForm = () => {
   })
 
   const onSubmit: SubmitHandler<FieldValues> = data => {
-    console.log('data', data)
     setIsLoading(true)
     if (variant === 'REGISTER') {
-      // Axios Register
+      axios.post('/api/register', data)
+      setIsLoading(false)
     }
     if (variant === 'LOGIN') {
-      // Axios Login
     }
   }
 
   const socialAction = (action: 'github' | 'google') => {
     setIsLoading(true)
-    // NextAuth social login
   }
 
   return (
     <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
-      <div className='px-4 py-8 shadow sm:rounded-lg sm:px-10 backdrop-blur-[9px] border border-gray-200'>
+      <div className='px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10 backdrop-blur-[9px] border border-gray-200'>
         <form action='' className='space-y-6' onSubmit={handleSubmit(onSubmit)}>
-          {variant === 'REGISTER' && <Input id='email' label='Email' register={register} errors={errors} disabled={isLoading} />}
+          {variant === 'REGISTER' && <Input id='name' label='Name' register={register} errors={errors} disabled={isLoading} />}
 
           <Input id='email' label='Email Address' type='email' register={register} errors={errors} disabled={isLoading} />
 
@@ -60,7 +59,7 @@ const AuthForm = () => {
 
           <div>
             <Button type='submit' fullWidth disabled={isLoading}>
-              {variant === 'REGISTER' ? 'Register' : 'Login'}
+              {isLoading ? 'Loading...' : variant === 'REGISTER' ? 'Register' : 'Login'}
             </Button>
           </div>
         </form>
@@ -86,7 +85,7 @@ const AuthForm = () => {
         <div className='flex gap-2 justify-center text-sm mt-6 px-2 text-gray-500'>
           <div>{variant === 'LOGIN' ? 'New to Nexenger? ' : 'Already have an account?'}</div>
           <div onClick={toggleVariant} className='underline cursor-pointer'>
-            {variant === 'LOGIN' ? 'Create an Account' : 'Login in'}
+            {variant === 'LOGIN' ? 'Create an Account' : 'Log in'}
           </div>
         </div>
       </div>
