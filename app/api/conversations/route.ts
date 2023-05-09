@@ -1,7 +1,12 @@
 import getCurrentUser from '@/actions/getCurrentUser'
 import { NextResponse } from 'next/server'
 import prisma from '@/libs/prismadb'
-import { ICreateConversationPayload } from '@/types'
+interface ICreateConversationPayload {
+  userId: string
+  isGroup: boolean
+  members: any[]
+  name: string
+}
 
 export async function POST(request: Request) {
   try {
