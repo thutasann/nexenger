@@ -6,14 +6,6 @@ import { signOut } from 'next-auth/react'
 import useConversation from './useConversatoin'
 import type { IconType } from 'react-icons'
 
-interface IRoutes {
-  label: string
-  href: string
-  onClick?: () => void
-  icon: IconType
-  active?: boolean
-}
-
 const useRoutes = () => {
   const pathname = usePathname()
   const { conversationId } = useConversation()
