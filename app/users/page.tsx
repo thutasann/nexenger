@@ -1,9 +1,16 @@
-'use client'
+import EmptyState from '@/components/empty-state'
+import { Metadata } from 'next'
 
-import { signOut } from 'next-auth/react'
+export const metadata: Metadata = {
+  title: 'Messages | Nexenger',
+}
 
 const Users = () => {
-  return <button onClick={() => signOut()}>Logout</button>
+  return (
+    <div className='hidden lg:block lg:pl-80 h-full'>
+      <EmptyState />
+    </div>
+  )
 }
 
 export default Users
