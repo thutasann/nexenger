@@ -13,7 +13,7 @@ const Avatar = ({ user }: IAvatar) => {
     <div className='relative'>
       <div className='relative inline-block rounded-full overflow-hidden h-9 w-9 md:h-11 md:w-11'>
         <Image
-          alt={user.name!}
+          alt={user?.name || 'Avatar'}
           src={user?.image || '/placeholder.webp'}
           fill
           loading='lazy'

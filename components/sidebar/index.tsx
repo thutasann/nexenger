@@ -1,5 +1,4 @@
 import getCurrentUser from '@/actions/getCurrentUser'
-import { User } from '@prisma/client'
 import React from 'react'
 import DesktopSidebar from './desktop-sidebar'
 import MobileFooter from './mobile-footer'
