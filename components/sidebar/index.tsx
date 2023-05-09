@@ -1,3 +1,5 @@
+import getCurrentUser from '@/actions/getCurrentUser'
+import { User } from '@prisma/client'
 import React from 'react'
 import DesktopSidebar from './desktop-sidebar'
 import MobileFooter from './mobile-footer'
@@ -6,10 +8,12 @@ interface ISidebar {
   children: React.ReactNode
 }
 
-const Sidebar = ({ children }: ISidebar) => {
+const Sidebar = async ({ children }: ISidebar) => {
+  const currentUser = await getCurrentUser()
+
   return (
     <div className='h-full'>
-      <DesktopSidebar />
+      <DesktopSidebar currentUser={currentUser!} />
       <MobileFooter />
       <main className='lg:pl-20 h-full'>{children}</main>
     </div>
