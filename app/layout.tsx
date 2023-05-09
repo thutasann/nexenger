@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Nexenger',
-  description: 'This is the RealTime Messenger using NEXT13 App Dir.',
+  description: 'This is the RealTime Messenger using NEXT13 App Dir, MongoDB, Prisma',
   openGraph: {
     images: '/nexenger-og.avif',
     type: 'website',
