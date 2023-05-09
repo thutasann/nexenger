@@ -4,7 +4,7 @@ import { Comment } from 'react-loader-spinner'
 
 const Loader = () => {
   return (
-    <div className='h-full flex flex-col items-center justify-center bg-white/20 w-full'>
+    <div className='h-full flex flex-col items-center justify-center bg-white/20 w-full fixed z-[3000]'>
       <Comment
         visible={true}
         height='80'

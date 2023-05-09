@@ -1,11 +1,12 @@
+import { Conversation } from '@prisma/client'
 import React from 'react'
 
 interface IConversationList {
-  initialItems: any[]
+  initialItems: Conversation[]
 }
 
 const ConversationList = ({ initialItems }: IConversationList) => {
-  return <div>ConversationList</div>
+  return <div></div>
 }
 
 export default ConversationList

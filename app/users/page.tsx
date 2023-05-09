@@ -2,7 +2,7 @@ import EmptyState from '@/components/empty-state'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Messages | Nexenger',
+  title: 'People | Nexenger',
 }
 
 const Users = () => {

@@ -9,6 +9,19 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Nexenger',
   description: 'This is the RealTime Messenger using NEXT13 App Dir.',
+  openGraph: {
+    images: '/nexenger-og.avif',
+    type: 'website',
+    url: 'https://nexenger.vercel.app/',
+    locale: 'en',
+    countryName: 'Myanmar',
+    alternateLocale: 'eng',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@thutasann3',
+    images: '/nexenger-og.avif',
+  },
   icons: {
     icon: '/nexenger.png',
   },
