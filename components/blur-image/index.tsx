@@ -31,6 +31,7 @@ function BlurImage({ src, alt, fill, className, width, height, ...props }: IBlur
       onLoadingComplete={() => setLoading(false)}
       alt={alt}
       fill={fill}
+      quality={100}
     />
   )
 }
