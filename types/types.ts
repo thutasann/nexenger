@@ -9,3 +9,8 @@ export type FullConversationType = Conversation & {
   users: User[]
   messages: FullMessageType[]
 }
+
+export interface IGroupChatPayload {
+  name: string
+  members: User[]
+}
