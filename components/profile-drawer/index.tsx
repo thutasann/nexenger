@@ -6,6 +6,8 @@ import { IoClose, IoTrash } from 'react-icons/io5'
 import { Conversation, User } from '@prisma/client'
 import { format } from 'date-fns'
 import useOtherUser from '@/hooks/useOtherUser'
+import Avatar from '../avatar'
+import ConfirmModal from '../modal/confirm-modal'
 
 interface ProfileDrawerProps {
   isOpen: boolean
@@ -37,6 +39,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ isOpen, onClose, data }) 
 
   return (
     <>
+      <ConfirmModal isOpen={confirmOpen} onClose={() => setConfirmOpen(false)} />
       <Transition.Root show={isOpen} as={Fragment}>
         <Dialog as='div' className='relative z-50' onClose={onClose}>
           <Transition.Child
@@ -81,7 +84,9 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ isOpen, onClose, data }) 
                       </div>
                       <div className='relative mt-6 flex-1 px-4 sm:px-6'>
                         <div className='flex flex-col items-center'>
-                          <div className='mb-2'>Group</div>
+                          <div className='mb-2'>
+                            <Avatar user={otherUser} />
+                          </div>
                           <div className='font-semibold'>{title}</div>
                           <div className='text-sm text-gray-500'>{statusText}</div>
                           <div className='flex gap-10 my-8'>
