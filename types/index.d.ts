@@ -19,3 +19,8 @@ interface IMessagePayload {
   image: string
   conversationId: string
 }
+
+interface ISettingPayload {
+  name: string
+  image: string
+}
