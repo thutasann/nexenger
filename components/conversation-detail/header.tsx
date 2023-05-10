@@ -6,6 +6,7 @@ import Link from 'next/link'
 import React, { useMemo, useState } from 'react'
 import { HiChevronLeft, HiEllipsisHorizontal } from 'react-icons/hi2'
 import Avatar from '../avatar'
+import AvatarGroup from '../avatar/avatar-group'
 import ProfileDrawer from '../profile-drawer'
 
 interface IHeader {
@@ -33,7 +34,7 @@ const Header: React.FC<IHeader> = ({ conversation }) => {
           <Link href='/conversations' className='lg:hidden block text-primary hover:text-primaryHover transition  cursor-pointer'>
             <HiChevronLeft />
           </Link>
-          <Avatar user={otherUser} />
+          {conversation.isGroup ? <AvatarGroup users={conversation.users} /> : <Avatar user={otherUser} />}
           <div className='flex flex-col -mt-1'>
             <div className='font-semibold'>{conversation.name || otherUser.name}</div>
             <div className='text-sm font-light text-neutral-500'>{statusText}</div>

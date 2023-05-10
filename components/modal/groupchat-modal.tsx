@@ -1,6 +1,5 @@
 'use client'
 
-import { IGroupChatPayload } from '@/types/types'
 import { User } from '@prisma/client'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
@@ -8,6 +7,7 @@ import React, { useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import Modal from '.'
+import Button from '../button'
 import Input from '../input'
 import Select from '../select'
 
@@ -58,7 +58,7 @@ const GroupChatModal: React.FC<IGroupChatModal> = ({ isOpen, onClose, users }) =
         <div className='space-y-12'>
           <div className='border-b border-gray-900/10 pb-12'>
             <h2 className='text-base font-semibold leading-7 text-gray-900'>Create a Group Chat</h2>
-            <p className='mt-1 text-sm leading-6 text-gray-600'>Create a chat with more than 2 people</p>
+            <p className='mt-1 text-sm leading-6 text-gray-600'>Create a chat with more than 2 people.</p>
             <div className='mt-10 flex flex-col gap-y-8'>
               <Input register={register} label='Name' id='name' disabled={isLoading} required errors={errors} />
               <Select
@@ -77,6 +77,14 @@ const GroupChatModal: React.FC<IGroupChatModal> = ({ isOpen, onClose, users }) =
               />
             </div>
           </div>
+        </div>
+        <div className='mt-6 flex items-center justify-end gap-x-3'>
+          <Button disabled={isLoading} onClick={onClose} type='button' secondary>
+            Cancel
+          </Button>
+          <Button disabled={isLoading} type='submit'>
+            Create
+          </Button>
         </div>
       </form>
     </Modal>
