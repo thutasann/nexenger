@@ -1,5 +1,7 @@
 import getConversationById from '@/actions/getConversationById'
 import getMessages from '@/actions/getMessages'
+import Body from '@/components/conversation-detail/body'
+import Form from '@/components/conversation-detail/form'
 import Header from '@/components/conversation-detail/header'
 import EmptyState from '@/components/empty-state'
 import React from 'react'
@@ -23,8 +25,10 @@ const ConversationId = async ({ params }: { params: IParams }) => {
   }
   return (
     <div className='lg:pl-80 h-full'>
-      <div className='h-full flex flex-col'>
+      <div className='h-full flex flex-col justify-between'>
         <Header conversation={conversation} />
+        <Body />
+        <Form />
       </div>
     </div>
   )
