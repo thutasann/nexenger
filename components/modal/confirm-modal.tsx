@@ -21,7 +21,8 @@ const ConfirmModal: React.FC<IConfirmModal> = ({ isOpen, onClose }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const onDelete = useCallback(() => {
-    setIsLoading(false)
+    setIsLoading(true)
+
     axios
       .delete(`/api/conversations/${conversationId}`)
       .then(() => {
@@ -31,7 +32,7 @@ const ConfirmModal: React.FC<IConfirmModal> = ({ isOpen, onClose }) => {
       })
       .catch(() => toast.error('Something went wrong!'))
       .finally(() => setIsLoading(false))
-  }, [conversationId, router, onClose])
+  }, [router, conversationId, onClose])
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
