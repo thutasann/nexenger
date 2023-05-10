@@ -24,7 +24,7 @@ const Page = () => {
             title='Nexenger'
           />
         </Link>
-        <h1 className='mt-3 text-center text-3xl font-[900] tracking-light text-slate-700'>Sign in to your account</h1>
+        <h1 className='mt-3 text-center text-3xl font-[900] tracking-light text-slate-700'>Welcome to Nexenger</h1>
       </div>
       <AuthForm />
     </div>
