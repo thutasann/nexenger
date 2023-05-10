@@ -3,7 +3,7 @@
 import React from 'react'
 
 const Body = () => {
-  return <div className='flex-1 overflow-y-auto'>Body</div>
+  return <div className='flex-1 overflow-y-auto'></div>
 }
 
 export default Body
