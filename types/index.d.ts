@@ -13,3 +13,9 @@ interface IRoutes {
   icon: IconType
   active?: boolean
 }
+
+interface IMessagePayload {
+  message: string
+  image: string
+  conversationId: string
+}
