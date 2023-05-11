@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import React, { useCallback, useState } from 'react'
 import Avatar from '../avatar'
+import LoadingModal from '../modal/loading-modal'
 
 interface IUsersBox {
   data: User
@@ -29,6 +30,7 @@ const UsersBox = ({ data }: IUsersBox) => {
 
   return (
     <>
+      {isLoading && <LoadingModal />}
       <div
         onClick={handleClick}
         className='

@@ -1,5 +1,5 @@
-import Loader from '@/components/loader'
+import LoadingModal from '@/components/modal/loading-modal'
 
 export default function Loading() {
-  return <Loader />
+  return <LoadingModal />
 }

@@ -14,14 +14,16 @@ interface IBlurImage {
   width?: number
   height?: number
   fill?: boolean
+  onClick?: () => void
 }
 
-function BlurImage({ src, alt, fill, className, width, height, ...props }: IBlurImage): JSX.Element {
+function BlurImage({ src, alt, fill, onClick, className, width, height, ...props }: IBlurImage): JSX.Element {
   const [isLoading, setLoading] = useState(true)
 
   return (
     <Image
       {...props}
+      onClick={onClick}
       src={src}
       width={width}
       height={height}

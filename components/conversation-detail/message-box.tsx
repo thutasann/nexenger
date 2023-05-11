@@ -4,10 +4,10 @@ import { FullMessageType } from '@/types/types'
 import clsx from 'clsx'
 import { useSession } from 'next-auth/react'
 import { format } from 'date-fns'
-import React from 'react'
+import React, { useState } from 'react'
 import Avatar from '../avatar'
-import Image from 'next/image'
 import BlurImage from '../blur-image'
+import ImageModal from '../modal/image-modal'
 
 interface IMessageBox {
   isLatest: boolean
@@ -15,6 +15,7 @@ interface IMessageBox {
 }
 
 const MessagBox: React.FC<IMessageBox> = ({ isLatest, data }) => {
+  const [imageModalOpen, setImageModalOpen] = useState<boolean>(false)
   const session = useSession()
   const isOwn = session?.data?.user?.email === data.sender.email
   const seenList = (data.seen || [])
@@ -27,7 +28,7 @@ const MessagBox: React.FC<IMessageBox> = ({ isLatest, data }) => {
   const body = clsx('flex flex-col gap-2', isOwn && 'items-end')
   const message = clsx(
     'text-sm w-fit overflow-hidden',
-    isOwn ? 'bg-primary text-white' : 'bg-gray-100',
+    isOwn && !data.image ? 'bg-primary text-white' : 'bg-gray-100',
     data.image ? 'rounded-md p-0' : 'rounded-full py-2 px-3'
   )
 
@@ -42,8 +43,10 @@ const MessagBox: React.FC<IMessageBox> = ({ isLatest, data }) => {
           <div className='text-xs text-gray-400'>{format(new Date(data.createdAt), 'p')}</div>
         </div>
         <div className={message}>
+          {data.image ? <ImageModal src={data.image!} isOpen={imageModalOpen} onClose={() => setImageModalOpen(false)} /> : null}
           {data.image ? (
             <BlurImage
+              onClick={() => setImageModalOpen(true)}
               width={288}
               height={288}
               alt='Message Image'
