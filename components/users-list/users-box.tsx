@@ -53,7 +53,7 @@ const UsersBox = ({ data }: IUsersBox) => {
           <div className='focus:outline-none'>
             <span className='absolute inset-0' aria-hidden='true' />
             <div className='flex justify-between items-center mb-1'>
-              <p className='text-[16px] font-medium text-gray-900'>{data.name}</p>
+              <p className='text-[16px] font-medium text-gray-900'>{data?.name}</p>
             </div>
           </div>
         </div>

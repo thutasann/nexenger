@@ -41,7 +41,7 @@ const Header: React.FC<IHeader> = ({ conversation }) => {
           </Link>
           {conversation.isGroup ? <AvatarGroup users={conversation.users} /> : <Avatar user={otherUser} />}
           <div className='flex flex-col -mt-1'>
-            <div className='font-semibold'>{conversation.name || otherUser.name}</div>
+            <div className='font-semibold'>{conversation?.name || otherUser?.name}</div>
             <div className='text-sm font-light text-neutral-500'>{statusText}</div>
           </div>
         </div>

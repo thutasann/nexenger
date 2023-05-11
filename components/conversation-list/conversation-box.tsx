@@ -77,9 +77,9 @@ const ConversationBox: React.FC<IConversationBox> = ({ data, selected }) => {
       <div className='min-w-0 flex-1'>
         <div className='focus:outline-none'>
           <div className='flex justify-between items-center mb-1'>
-            <p className='text-md font-medium text-slate-900'>{data.name || otherUser.name}</p>
+            <p className='text-md font-medium text-slate-900'>{data?.name || otherUser?.name}</p>
             {latestMessage?.createdAt && (
-              <p className='text-xs text-gray-400 font-light'>{format(new Date(latestMessage.createdAt), 'p')}</p>
+              <p className='text-xs text-gray-400 font-light'>{format(new Date(latestMessage?.createdAt), 'p')}</p>
             )}
           </div>
           <p className={clsx(`truncate text-sm`, hasSeen ? 'text-gray-500' : 'text-slate-800 font-medium')}>{lastMessageText}</p>

@@ -24,11 +24,11 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ isOpen, onClose, data }) 
   const otherUser = useOtherUser(data)
 
   const joinedDate = useMemo(() => {
-    return format(new Date(otherUser.createdAt), 'PP')
-  }, [otherUser.createdAt])
+    return format(new Date(otherUser?.createdAt), 'PP')
+  }, [otherUser?.createdAt])
 
   const title = useMemo(() => {
-    return data.name || otherUser.name
+    return data?.name || otherUser?.name
   }, [data.name, otherUser.name])
 
   const { members } = useActiveList()
