@@ -4,6 +4,7 @@ import { Metadata } from 'next'
 import ToastContext from '@/context/toast-context'
 import AuthContext from '@/context/auth-context'
 import { Analytics } from '@vercel/analytics/react'
+import ActiveStatus from '@/components/active-status'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <AuthContext>
           <ToastContext />
+          <ActiveStatus />
           {children}
         </AuthContext>
       </body>

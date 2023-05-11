@@ -1,5 +1,6 @@
 'use client'
 
+import useActiveList from '@/hooks/useActiveList'
 import useOtherUser from '@/hooks/useOtherUser'
 import { Conversation, User } from '@prisma/client'
 import Link from 'next/link'
@@ -16,15 +17,19 @@ interface IHeader {
 }
 
 const Header: React.FC<IHeader> = ({ conversation }) => {
+  const { members } = useActiveList()
+
   const otherUser = useOtherUser(conversation)
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false)
+
+  const isActive = members.indexOf(otherUser?.email!) !== 1
 
   const statusText = useMemo<string>(() => {
     if (conversation.isGroup) {
       return `${conversation.users.length} memebers`
     }
-    return 'Active'
-  }, [conversation])
+    return isActive ? 'Active' : 'Offline'
+  }, [conversation, isActive])
 
   return (
     <>
