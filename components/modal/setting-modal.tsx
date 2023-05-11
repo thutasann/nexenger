@@ -74,7 +74,7 @@ const SettingModal: React.FC<ISettingsModal> = ({ isOpen, onClose, currentUser }
                     height={48}
                     className='rounded-full object-cover'
                     src={image || currentUser?.image || '/placeholder.webp'}
-                    alt={currentUser.name!}
+                    alt='current user'
                   />
                   <CldUploadButton options={{ maxFiles: 1 }} onUpload={handleUpload} uploadPreset='nexenger'>
                     <Button disabled={isLoading} type='button'>

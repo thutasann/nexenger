@@ -1,15 +1,18 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import useConversation from '@/hooks/useConversatoin'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import axios from 'axios'
 import { HiPhoto, HiPaperAirplane } from 'react-icons/hi2'
 import MessageInput from './message-input'
 import { CldUploadButton } from 'next-cloudinary'
+import { toast } from 'react-hot-toast'
+import LoadingModal from '../modal/loading-modal'
 
 const Form = () => {
   const { conversationId } = useConversation()
+  const [loading, setLoading] = useState<boolean>(false)
 
   const {
     register,
@@ -24,10 +27,15 @@ const Form = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = data => {
     setValue('message', '', { shouldValidate: true })
-    axios.post('/api/messages', {
-      ...data,
-      conversationId,
-    })
+    setLoading(true)
+    axios
+      .post('/api/messages', {
+        ...data,
+        conversationId,
+      })
+      .then(() => {})
+      .catch(() => toast.error('Something went wrong'))
+      .finally(() => setLoading(false))
   }
 
   const handleUpload = (result: { info?: { secure_url?: string } }) => {
@@ -39,6 +47,7 @@ const Form = () => {
 
   return (
     <div className='py-4 px-4 bg-white border-t flex items-center gap-2 lg:gap-4 w-full'>
+      {loading && <LoadingModal />}
       <CldUploadButton
         options={{
           maxFiles: 1,
